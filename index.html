@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Robotics Researcher Portfolio</title>
+    <style>
+        /* Dark Green Matrix/Robotics Theme */
+        body { 
+            margin: 0; 
+            font-family: 'Courier New', Courier, monospace; 
+            background-color: #050505; 
+            color: #00ff00; 
+            /* Hide scrollbar for a clean, single-page look */
+            overflow: hidden; 
+        }
+
+        /* Glassmorphism Navbar with Neon Bottom Border */
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 40px;
+            box-sizing: border-box;
+            background: rgba(5, 5, 5, 0.4); /* Transparent Dark */
+            backdrop-filter: blur(12px); /* The Glass Effect */
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(0, 255, 0, 0.2);
+            z-index: 1000;
+        }
+
+        /* Dual-color Logo Styling */
+        .navbar .logo {
+            font-size: 1.6em;
+            font-weight: bold;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+        }
+        
+        .logo-moynul { color: #00ff00; } /* Neon Green */
+        .logo-rifat { color: #00ccff; } /* Cyan Blue */
+
+        /* Animated Neon Navbar Links */
+        .navbar ul {
+            list-style: none;
+            display: flex;
+            gap: 40px; 
+            margin: 0;
+            padding: 0;
+        }
+
+        .navbar ul li a {
+            color: #a3a3a3;
+            text-decoration: none;
+            font-size: 1.1em;
+            transition: 0.3s;
+            padding-bottom: 5px; 
+            position: relative;
+        }
+
+        /* Hover & Active text effect */
+        .navbar ul li a:hover, .navbar ul li a.active {
+            color: #00ff00;
+            text-shadow: 0 0 8px rgba(0, 255, 0, 0.8);
+        }
+
+        /* The Animated Neon Underline on Links directly */
+        .navbar ul li a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 50%;
+            background-color: #00ff00;
+            box-shadow: 0 0 10px #00ff00, 0 0 20px #00ff00;
+            transition: all 0.3s ease;
+            transform: translateX(-50%);
+        }
+
+        /* Activate underline on hover and keep it for active page */
+        .navbar ul li a:hover::after, .navbar ul li a.active::after {
+            width: 100%;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            background-image: linear-gradient(rgba(5, 5, 5, 0.2), rgba(5, 5, 5, 0.3)), url('image_ce8666.png');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+
+        /* Terminal Typing Animation */
+        .terminal-container {
+            background: rgba(0, 20, 0, 0.7); 
+            padding: 20px 40px;
+            border-radius: 5px;
+            border: 1px solid rgba(0, 255, 0, 0.5);
+            box-shadow: 0 0 20px rgba(0, 255, 0, 0.2);
+            backdrop-filter: blur(5px);
+        }
+
+        .terminal { 
+            font-size: 1.5em; 
+            white-space: nowrap; 
+            overflow: hidden; 
+            border-right: 3px solid #00ff00; 
+            width: 0; 
+            animation: typing 4s steps(40, end) forwards, blink 0.75s step-end infinite; 
+        }
+
+        @keyframes typing { from { width: 0 } to { width: 100% } }
+        @keyframes blink { from, to { border-color: transparent } 50% { border-color: #00ff00; } }
+
+    </style>
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="logo">
+            <span class="logo-moynul">Moynul</span> <span class="logo-rifat">Rifat</span>
+        </div>
+        <ul>
+            <li><a href="index.html" class="active">Home</a></li>
+            <li><a href="projects.html">Projects</a></li>
+            <li><a href="research.html">Research</a></li>
+            <li><a href="social.html">Social</a></li>
+            <li><a href="about.html">About Me</a></li>
+        </ul>
+    </nav>
+
+    <div class="hero">
+        <div class="terminal-container">
+            <div class="terminal">user@portfolio:~$ ./start_robotics_profile.sh</div>
+        </div>
+    </div>
+
+</body>
+</html>
