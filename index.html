@@ -1,0 +1,711 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Moynul Rifat — Robotics Researcher</title>
+<style>
+  :root {
+    --green: #00ff88;
+    --cyan: #00d4ff;
+    --dim: #00cc66;
+    --bg: #050a05;
+    --bg2: #0a120a;
+    --bg3: #0f1a0f;
+    --border: rgba(0,255,136,0.15);
+    --border-strong: rgba(0,255,136,0.35);
+    --text: #c8ffd4;
+    --muted: #6a9a72;
+    --font: 'Courier New', Courier, monospace;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: var(--font);
+    background: var(--bg);
+    color: var(--text);
+    overflow-x: hidden;
+  }
+
+  /* ── NAVBAR ── */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 999;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 14px 48px;
+    background: rgba(5,10,5,0.85);
+    backdrop-filter: blur(14px);
+    border-bottom: 1px solid var(--border);
+  }
+  .logo { font-size: 1.3em; font-weight: bold; letter-spacing: 2px; }
+  .logo-m { color: var(--green); }
+  .logo-r { color: var(--cyan); }
+  .nav-links { list-style: none; display: flex; gap: 36px; }
+  .nav-links a {
+    color: var(--muted);
+    text-decoration: none;
+    font-size: 0.9em;
+    letter-spacing: 1px;
+    transition: color 0.25s;
+    position: relative;
+    padding-bottom: 4px;
+  }
+  .nav-links a::after {
+    content: '';
+    position: absolute;
+    bottom: -2px; left: 50%;
+    width: 0; height: 1px;
+    background: var(--green);
+    transform: translateX(-50%);
+    transition: width 0.25s;
+  }
+  .nav-links a:hover { color: var(--green); }
+  .nav-links a:hover::after { width: 100%; }
+
+  /* ── HERO ── */
+  #hero {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background-image: linear-gradient(rgba(5,10,5,0.55), rgba(5,10,5,0.75)), url('background.png');
+    background-size: cover;
+    background-position: center;
+    padding: 0 24px;
+  }
+  .hero-tag {
+    font-size: 0.75em;
+    color: var(--cyan);
+    letter-spacing: 4px;
+    margin-bottom: 18px;
+  }
+  .hero-name {
+    font-size: clamp(2.4em, 6vw, 4.2em);
+    font-weight: bold;
+    letter-spacing: 3px;
+    color: #fff;
+    margin-bottom: 12px;
+  }
+  .hero-name span { color: var(--green); }
+  .hero-sub {
+    font-size: 1em;
+    color: var(--muted);
+    letter-spacing: 1px;
+    margin-bottom: 36px;
+    max-width: 560px;
+  }
+  .hero-btns { display: flex; gap: 16px; flex-wrap: wrap; justify-content: center; }
+  .btn {
+    padding: 10px 28px;
+    font-family: var(--font);
+    font-size: 0.85em;
+    letter-spacing: 2px;
+    text-decoration: none;
+    border-radius: 2px;
+    transition: all 0.25s;
+    cursor: pointer;
+    display: inline-block;
+  }
+  .btn-primary {
+    background: var(--green);
+    color: #050a05;
+    border: 1px solid var(--green);
+    font-weight: bold;
+  }
+  .btn-primary:hover { background: transparent; color: var(--green); }
+  .btn-secondary {
+    background: transparent;
+    color: var(--cyan);
+    border: 1px solid var(--cyan);
+  }
+  .btn-secondary:hover { background: var(--cyan); color: #050a05; }
+
+  .terminal-badge {
+    margin-top: 60px;
+    background: rgba(0,20,0,0.7);
+    border: 1px solid var(--border-strong);
+    padding: 12px 28px;
+    border-radius: 3px;
+    font-size: 0.85em;
+    color: var(--green);
+  }
+  .cursor {
+    display: inline-block;
+    width: 8px; height: 1em;
+    background: var(--green);
+    margin-left: 2px;
+    vertical-align: text-bottom;
+    animation: blink 1s step-end infinite;
+  }
+  @keyframes blink { 50% { opacity: 0; } }
+
+  /* ── SECTIONS ── */
+  section {
+    padding: 90px 48px;
+    max-width: 960px;
+    margin: 0 auto;
+  }
+  .section-label {
+    font-size: 0.72em;
+    letter-spacing: 4px;
+    color: var(--cyan);
+    margin-bottom: 8px;
+  }
+  .section-title {
+    font-size: 1.8em;
+    color: #fff;
+    margin-bottom: 40px;
+    position: relative;
+    display: inline-block;
+  }
+  .section-title::after {
+    content: '';
+    position: absolute;
+    bottom: -8px; left: 0;
+    width: 40px; height: 2px;
+    background: var(--green);
+  }
+  .divider {
+    border: none;
+    border-top: 1px solid var(--border);
+    margin: 0;
+  }
+
+  /* ── ABOUT ── */
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 48px;
+    align-items: start;
+  }
+  .about-bio {
+    font-size: 0.95em;
+    line-height: 1.9;
+    color: var(--text);
+  }
+  .about-bio p { margin-bottom: 14px; }
+  .about-stats {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+  .stat-item {
+    border: 1px solid var(--border);
+    padding: 16px 20px;
+    background: var(--bg2);
+    border-radius: 2px;
+  }
+  .stat-item .stat-val {
+    font-size: 1.5em;
+    color: var(--green);
+    font-weight: bold;
+  }
+  .stat-item .stat-key {
+    font-size: 0.75em;
+    color: var(--muted);
+    letter-spacing: 2px;
+    margin-top: 4px;
+  }
+
+  /* ── RESEARCH ── */
+  .paper-card {
+    border: 1px solid var(--border);
+    background: var(--bg2);
+    padding: 28px 32px;
+    border-radius: 2px;
+    margin-bottom: 20px;
+    position: relative;
+    transition: border-color 0.25s;
+  }
+  .paper-card:hover { border-color: var(--border-strong); }
+  .paper-type {
+    font-size: 0.7em;
+    letter-spacing: 3px;
+    color: var(--cyan);
+    margin-bottom: 10px;
+  }
+  .paper-title {
+    font-size: 1.05em;
+    color: #fff;
+    line-height: 1.6;
+    margin-bottom: 10px;
+  }
+  .paper-meta {
+    font-size: 0.78em;
+    color: var(--muted);
+    line-height: 1.8;
+  }
+  .paper-meta span { color: var(--green); }
+  .paper-links { margin-top: 18px; display: flex; gap: 12px; }
+  .paper-link {
+    font-size: 0.75em;
+    letter-spacing: 2px;
+    color: var(--cyan);
+    text-decoration: none;
+    border: 1px solid rgba(0,212,255,0.3);
+    padding: 5px 14px;
+    border-radius: 2px;
+    transition: all 0.2s;
+  }
+  .paper-link:hover { background: var(--cyan); color: #050a05; }
+  .wip-tag {
+    display: inline-block;
+    font-size: 0.65em;
+    letter-spacing: 2px;
+    color: #ffa500;
+    border: 1px solid rgba(255,165,0,0.3);
+    padding: 2px 8px;
+    margin-left: 10px;
+    vertical-align: middle;
+    border-radius: 2px;
+  }
+
+  /* ── PROJECTS ── */
+  .projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+  }
+  .project-card {
+    border: 1px solid var(--border);
+    background: var(--bg2);
+    padding: 24px 24px 20px;
+    border-radius: 2px;
+    transition: border-color 0.25s, transform 0.2s;
+  }
+  .project-card:hover { border-color: var(--border-strong); transform: translateY(-3px); }
+  .project-icon {
+    font-size: 1.6em;
+    margin-bottom: 14px;
+    display: block;
+  }
+  .project-name {
+    font-size: 0.95em;
+    color: #fff;
+    margin-bottom: 10px;
+    font-weight: bold;
+  }
+  .project-desc {
+    font-size: 0.8em;
+    color: var(--muted);
+    line-height: 1.8;
+    margin-bottom: 16px;
+  }
+  .tech-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 16px; }
+  .tag {
+    font-size: 0.68em;
+    letter-spacing: 1px;
+    color: var(--green);
+    border: 1px solid rgba(0,255,136,0.25);
+    padding: 3px 8px;
+    border-radius: 2px;
+  }
+  .project-link {
+    font-size: 0.75em;
+    letter-spacing: 2px;
+    color: var(--cyan);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .project-link:hover { color: var(--green); }
+
+  /* ── SKILLS ── */
+  .skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 24px;
+  }
+  .skill-group { }
+  .skill-group-title {
+    font-size: 0.7em;
+    letter-spacing: 3px;
+    color: var(--cyan);
+    margin-bottom: 14px;
+    padding-bottom: 6px;
+    border-bottom: 1px solid var(--border);
+  }
+  .skill-row { margin-bottom: 12px; }
+  .skill-name {
+    font-size: 0.78em;
+    color: var(--text);
+    margin-bottom: 5px;
+    display: flex;
+    justify-content: space-between;
+  }
+  .skill-name span { color: var(--muted); font-size: 0.85em; }
+  .skill-bar {
+    height: 3px;
+    background: rgba(0,255,136,0.1);
+    border-radius: 2px;
+    overflow: hidden;
+  }
+  .skill-fill {
+    height: 100%;
+    background: var(--green);
+    border-radius: 2px;
+  }
+
+  /* ── EDUCATION ── */
+  .edu-card {
+    border-left: 2px solid var(--green);
+    padding: 20px 28px;
+    background: var(--bg2);
+    margin-bottom: 16px;
+  }
+  .edu-degree { font-size: 1em; color: #fff; margin-bottom: 6px; }
+  .edu-uni { font-size: 0.85em; color: var(--cyan); margin-bottom: 6px; }
+  .edu-meta { font-size: 0.78em; color: var(--muted); line-height: 1.8; }
+
+  /* ── CONTACT ── */
+  .contact-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 16px;
+    margin-bottom: 40px;
+  }
+  .contact-item {
+    border: 1px solid var(--border);
+    background: var(--bg2);
+    padding: 18px 22px;
+    border-radius: 2px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    text-decoration: none;
+    transition: border-color 0.2s, transform 0.2s;
+  }
+  .contact-item:hover { border-color: var(--border-strong); transform: translateY(-2px); }
+  .contact-icon { font-size: 1.2em; }
+  .contact-info {}
+  .contact-type { font-size: 0.65em; letter-spacing: 3px; color: var(--muted); }
+  .contact-val { font-size: 0.82em; color: var(--cyan); margin-top: 3px; word-break: break-all; }
+
+  /* ── FOOTER ── */
+  footer {
+    text-align: center;
+    padding: 28px;
+    border-top: 1px solid var(--border);
+    font-size: 0.72em;
+    color: var(--muted);
+    letter-spacing: 2px;
+  }
+
+  /* ── MOBILE ── */
+  @media (max-width: 700px) {
+    nav { padding: 12px 20px; }
+    .nav-links { gap: 20px; }
+    .nav-links a { font-size: 0.8em; }
+    section { padding: 70px 24px; }
+    .about-grid { grid-template-columns: 1fr; gap: 32px; }
+    .hero-name { font-size: 2em; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav>
+  <div class="logo">
+    <span class="logo-m">Moynul</span>&nbsp;<span class="logo-r">Rifat</span>
+  </div>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#research">Research</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <p class="hero-tag">// ROBOTICS &nbsp;·&nbsp; AI &nbsp;·&nbsp; RESEARCH</p>
+  <h1 class="hero-name"><span>Moynul</span> Rifat</h1>
+  <p class="hero-sub">BSc Engineering (ICT) · MBSTU &nbsp;|&nbsp; Robotics Researcher</p>
+  <div class="hero-btns">
+    <a href="#research" class="btn btn-primary">VIEW RESEARCH</a>
+    <a href="https://github.com/E-Moynul" class="btn btn-secondary" target="_blank">GITHUB</a>
+  </div>
+  <div class="terminal-badge">
+    <span style="color:var(--muted)">user@portfolio:~$</span> ./start_robotics_profile.sh<span class="cursor"></span>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- ABOUT -->
+<section id="about">
+  <p class="section-label">// 01 &nbsp; ABOUT</p>
+  <h2 class="section-title">Who Am I</h2>
+  <div class="about-grid">
+    <div class="about-bio">
+      <p>I am a robotics researcher passionate about intelligent autonomous systems — where robotics meets AI. My goal is to contribute to cutting-edge robotics research and build systems that push the boundaries of what machines can do.</p>
+      <p>Currently a 3rd-year BSc Engineering (ICT) student at Mawlana Bhashani Science and Technology University (MBSTU), Bangladesh. I work independently on robotics projects and research, driven by the vision of a future built by intelligent machines.</p>
+      <p>Long-term, I am targeting a funded PhD program in robotics — with Australia as my primary destination — where I aim to work on autonomous mobile robots integrated with deep learning and reinforcement learning.</p>
+    </div>
+    <div class="about-stats">
+      <div class="stat-item">
+        <div class="stat-val">1</div>
+        <div class="stat-key">IEEE CONFERENCE PAPER</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-val">1380</div>
+        <div class="stat-key">CODEFORCES RATING (SPECIALIST)</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-val">3rd Year</div>
+        <div class="stat-key">BSC ENGINEERING (ICT) · MBSTU</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-val">ROS2</div>
+        <div class="stat-key">PRIMARY ROBOTICS FRAMEWORK</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- RESEARCH -->
+<section id="research">
+  <p class="section-label">// 02 &nbsp; RESEARCH</p>
+  <h2 class="section-title">Publications & Work</h2>
+
+  <div class="paper-card">
+    <p class="paper-type">IEEE CONFERENCE PAPER &nbsp;·&nbsp; 2ND AUTHOR</p>
+    <p class="paper-title">Performance Analysis of Linux Filesystems for Embedded and Robotic Systems</p>
+    <div class="paper-meta">
+      <span>Conference:</span> IEEE (Published) &nbsp;·&nbsp;
+      <span>Role:</span> 2nd Author &nbsp;·&nbsp;
+      <span>Topic:</span> Linux Filesystem Performance
+    </div>
+    <p style="font-size:0.78em; color:var(--muted); margin-top:10px; line-height:1.8;">
+      Experimental benchmarking and comparative analysis of Linux filesystem architectures relevant to performance-constrained robotic platforms.
+    </p>
+    <div class="paper-links">
+      <a href="#" class="paper-link">IEEE PAGE</a>
+    </div>
+  </div>
+
+  <div class="paper-card">
+    <p class="paper-type">
+      JOURNAL PAPER &nbsp;<span class="wip-tag">IN PROGRESS</span>
+    </p>
+    <p class="paper-title">PCF-Based Orbital Angular Momentum (OAM) Mode Propagation Analysis</p>
+    <div class="paper-meta">
+      <span>Target:</span> IEEE Journal &nbsp;·&nbsp;
+      <span>Role:</span> 1st Author &nbsp;·&nbsp;
+      <span>Status:</span> Writing phase
+    </div>
+    <p style="font-size:0.78em; color:var(--muted); margin-top:10px; line-height:1.8;">
+      Investigation of photonic crystal fiber structures for stable OAM mode transmission — targeting high-capacity optical communication systems.
+    </p>
+  </div>
+
+  <div class="paper-card">
+    <p class="paper-type">
+      RESEARCH PROJECT &nbsp;<span class="wip-tag">IN PROGRESS</span>
+    </p>
+    <p class="paper-title">Autonomous Mini Cleaner Robot — ROS2 + Reinforcement Learning</p>
+    <div class="paper-meta">
+      <span>Framework:</span> ROS2 Humble, Isaac Sim &nbsp;·&nbsp;
+      <span>Target:</span> IEEE Publication &nbsp;·&nbsp;
+      <span>Status:</span> Early development
+    </div>
+    <p style="font-size:0.78em; color:var(--muted); margin-top:10px; line-height:1.8;">
+      Designing an autonomous cleaning robot using reinforcement learning for path planning and obstacle avoidance, with simulation in NVIDIA Isaac Sim before hardware deployment.
+    </p>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- PROJECTS -->
+<section id="projects">
+  <p class="section-label">// 03 &nbsp; PROJECTS</p>
+  <h2 class="section-title">Selected Work</h2>
+  <div class="projects-grid">
+
+    <div class="project-card">
+      <span class="project-icon">🤖</span>
+      <p class="project-name">AI Vision-Based 4-DOF Robot Arm</p>
+      <p class="project-desc">Hand gesture-controlled robotic arm using MediaPipe for real-time hand tracking. Implements forward/inverse kinematics for a 4-DOF arm with Arduino-based actuation.</p>
+      <div class="tech-tags">
+        <span class="tag">Python</span>
+        <span class="tag">MediaPipe</span>
+        <span class="tag">Arduino</span>
+        <span class="tag">OpenCV</span>
+        <span class="tag">Kinematics</span>
+      </div>
+      <a href="https://github.com/E-Moynul/AI-Vision-Based-Hand-Gesture-Controlled-4-DOF-Robot-Arm" class="project-link" target="_blank">→ VIEW ON GITHUB</a>
+    </div>
+
+    <div class="project-card">
+      <span class="project-icon">🚗</span>
+      <p class="project-name">Differential Drive Robot — ROS2</p>
+      <p class="project-desc">2-wheel differential drive robot with keyboard teleoperation and Gazebo simulation. Features a modular IMU/flex sensor gesture control layer publishing to /cmd_vel.</p>
+      <div class="tech-tags">
+        <span class="tag">ROS2</span>
+        <span class="tag">Gazebo</span>
+        <span class="tag">Python</span>
+        <span class="tag">URDF</span>
+        <span class="tag">TF2</span>
+      </div>
+      <a href="https://github.com/E-Moynul" class="project-link" target="_blank">→ VIEW ON GITHUB</a>
+    </div>
+
+    <div class="project-card">
+      <span class="project-icon">🔐</span>
+      <p class="project-name">RSA Cryptography System</p>
+      <p class="project-desc">Core cryptography implementation in C focusing on memory optimization, prime factorization algorithms, and secure data encryption/decryption logic.</p>
+      <div class="tech-tags">
+        <span class="tag">C</span>
+        <span class="tag">Algorithms</span>
+        <span class="tag">Cryptography</span>
+        <span class="tag">Memory Optimization</span>
+      </div>
+      <a href="https://github.com/E-Moynul/projects/blob/main/RSA_Cryptography_project.c" class="project-link" target="_blank">→ VIEW ON GITHUB</a>
+    </div>
+
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- SKILLS -->
+<section id="skills">
+  <p class="section-label">// 04 &nbsp; SKILLS</p>
+  <h2 class="section-title">Technical Stack</h2>
+  <div class="skills-grid">
+
+    <div class="skill-group">
+      <p class="skill-group-title">ROBOTICS</p>
+      <div class="skill-row">
+        <div class="skill-name">ROS2 / ROS <span>Advanced</span></div>
+        <div class="skill-bar"><div class="skill-fill" style="width:80%"></div></div>
+      </div>
+      <div class="skill-row">
+        <div class="skill-name">Gazebo Simulation <span>Intermediate</span></div>
+        <div class="skill-bar"><div class="skill-fill" style="width:65%"></div></div>
+      </div>
+      <div class="skill-row">
+        <div class="skill-name">Arduino / Embedded <span>Intermediate</span></div>
+        <div class="skill-bar"><div class="skill-fill" style="width:65%"></div></div>
+      </div>
+      <div class="skill-row">
+        <div class="skill-name">URDF / TF2 <span>Intermediate</span></div>
+        <div class="skill-bar"><div class="skill-fill" style="width:60%"></div></div>
+      </div>
+    </div>
+
+    <div class="skill-group">
+      <p class="skill-group-title">PROGRAMMING</p>
+      <div class="skill-row">
+        <div class="skill-name">C / C++ <span>Advanced</span></div>
+        <div class="skill-bar"><div class="skill-fill" style="width:85%"></div></div>
+      </div>
+      <div class="skill-row">
+        <div class="skill-name">Python <span>Intermediate</span></div>
+        <div class="skill-bar"><div class="skill-fill" style="width:70%"></div></div>
+      </div>
+      <div class="skill-row">
+        <div class="skill-name">Linux / Bash <span>Intermediate</span></div>
+        <div class="skill-bar"><div class="skill-fill" style="width:65%"></div></div>
+      </div>
+      <div class="skill-row">
+        <div class="skill-name">Git <span>Intermediate</span></div>
+        <div class="skill-bar"><div class="skill-fill" style="width:60%"></div></div>
+      </div>
+    </div>
+
+    <div class="skill-group">
+      <p class="skill-group-title">AI / VISION</p>
+      <div class="skill-row">
+        <div class="skill-name">MediaPipe <span>Advanced</span></div>
+        <div class="skill-bar"><div class="skill-fill" style="width:80%"></div></div>
+      </div>
+      <div class="skill-row">
+        <div class="skill-name">OpenCV <span>Intermediate</span></div>
+        <div class="skill-bar"><div class="skill-fill" style="width:65%"></div></div>
+      </div>
+      <div class="skill-row">
+        <div class="skill-name">Reinforcement Learning <span>Learning</span></div>
+        <div class="skill-bar"><div class="skill-fill" style="width:35%"></div></div>
+      </div>
+      <div class="skill-row">
+        <div class="skill-name">Isaac Sim <span>Learning</span></div>
+        <div class="skill-bar"><div class="skill-fill" style="width:25%"></div></div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- EDUCATION -->
+<section id="education" style="padding-top: 0;">
+  <p class="section-label">// 05 &nbsp; EDUCATION</p>
+  <h2 class="section-title">Academic Background</h2>
+  <div class="edu-card">
+    <p class="edu-degree">BSc Engineering — Information and Communication Technology (ICT)</p>
+    <p class="edu-uni">Mawlana Bhashani Science and Technology University (MBSTU) · Bangladesh</p>
+    <p class="edu-meta">
+      Year: 3rd Year (Semester 3-2) &nbsp;·&nbsp;
+      Focus: Robotics, AI Systems, Embedded Computing
+    </p>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- CONTACT -->
+<section id="contact">
+  <p class="section-label">// 06 &nbsp; CONTACT</p>
+  <h2 class="section-title">Get In Touch</h2>
+  <div class="contact-grid">
+    <a class="contact-item" href="mailto:it23017@mbstu.ac.bd">
+      <span class="contact-icon">✉</span>
+      <div class="contact-info">
+        <div class="contact-type">ACADEMIC EMAIL</div>
+        <div class="contact-val">it23017@mbstu.ac.bd</div>
+      </div>
+    </a>
+    <a class="contact-item" href="mailto:comedykhomedy@gmail.com">
+      <span class="contact-icon">✉</span>
+      <div class="contact-info">
+        <div class="contact-type">PERSONAL EMAIL</div>
+        <div class="contact-val">comedykhomedy@gmail.com</div>
+      </div>
+    </a>
+    <a class="contact-item" href="https://github.com/E-Moynul" target="_blank">
+      <span class="contact-icon">⌥</span>
+      <div class="contact-info">
+        <div class="contact-type">GITHUB</div>
+        <div class="contact-val">github.com/E-Moynul</div>
+      </div>
+    </a>
+    <a class="contact-item" href="https://www.linkedin.com/in/e-moynul" target="_blank">
+      <span class="contact-icon">◈</span>
+      <div class="contact-info">
+        <div class="contact-type">LINKEDIN</div>
+        <div class="contact-val">linkedin.com/in/e-moynul</div>
+      </div>
+    </a>
+  </div>
+</section>
+
+<footer>
+  &copy; 2025 MOYNUL RIFAT &nbsp;·&nbsp; ROBOTICS RESEARCHER &nbsp;·&nbsp; BUILT WITH PURPOSE
+</footer>
+
+</body>
+</html>
