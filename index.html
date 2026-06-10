@@ -25,7 +25,12 @@
 
   body {
     font-family: var(--font);
-    background: var(--bg);
+    background-color: var(--bg);
+    /* ব্যাকগ্রাউন্ড ছবিটি বডিতে নিয়ে আসা হলো এবং ফিক্সড করা হলো */
+    background-image: linear-gradient(rgba(5,5,5,0.2), rgba(5,5,5,0.3)), url('background.png');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
     color: var(--text);
     overflow-x: hidden;
   }
@@ -76,9 +81,7 @@
     justify-content: center;
     align-items: center;
     text-align: center;
-    background-image: linear-gradient(rgba(5,5,5,0.2), rgba(5,5,5,0.3)), url('background.png');
-    background-size: cover;
-    background-position: center;
+    /* এখান থেকে ব্যাকগ্রাউন্ড ছবির কোড সরিয়ে দেওয়া হয়েছে */
     padding: 0 24px;
   }
   .hero-tag {
@@ -431,8 +434,8 @@
   <h1 class="hero-name"><span>Moynul</span> Rifat</h1>
   <p class="hero-sub">Robotics Engineer & Researcher</p>
   <div class="hero-btns">
-    <a href="#research" class="btn btn-secondary target="_blank">VIEW RESEARCH</a>
-    <a href="#projects" class="btn btn-secondary target="_blank">VIEW PROJECTS</a>
+    <a href="#research" class="btn btn-secondary" target="_blank">VIEW RESEARCH</a>
+    <a href="#projects" class="btn btn-secondary" target="_blank">VIEW PROJECTS</a>
     <a href="https://github.com/E-Moynul" class="btn btn-secondary" target="_blank">GITHUB</a>
   </div>
   <div class="terminal-badge">
