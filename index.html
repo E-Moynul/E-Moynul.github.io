@@ -26,7 +26,6 @@
   body {
     font-family: var(--font);
     background-color: var(--bg);
-    /* ব্যাকগ্রাউন্ড ছবিটি বডিতে নিয়ে আসা হলো এবং ফিক্সড করা হলো */
     background-image: linear-gradient(rgba(5,5,5,0.2), rgba(5,5,5,0.3)), url('background.png');
     background-size: cover;
     background-position: center;
@@ -81,7 +80,6 @@
     justify-content: center;
     align-items: center;
     text-align: center;
-    /* এখান থেকে ব্যাকগ্রাউন্ড ছবির কোড সরিয়ে দেওয়া হয়েছে */
     padding: 0 24px;
   }
   .hero-tag {
@@ -559,6 +557,9 @@
     <div class="project-card">
       <span class="project-icon">🤖</span>
       <p class="project-name">AI Vision-Based 4-DOF Robot Arm</p>
+      <video autoplay loop muted playsinline style="width: 100%; border-radius: 4px; border: 1px solid var(--border-strong); margin-bottom: 12px; opacity: 0.9;">
+        <source src="https://github.com/user-attachments/assets/e34f89ad-0b0b-4d3a-9e66-1445dbe02955" type="video/mp4">
+      </video>
       <p class="project-desc">Hand gesture-controlled robotic arm using MediaPipe for real-time hand tracking. Implements forward/inverse kinematics for a 4-DOF arm with Arduino-based actuation.</p>
       <div class="tech-tags">
         <span class="tag">Python</span>
